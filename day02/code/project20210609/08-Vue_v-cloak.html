@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app" v-cloak> <!--添加此关键字，当vue没有被加载时，v-cloak属性是存在的，但是vue加载出来后，v-clack的标签就不存在了-->
+  {{message}} <!--如果网络有延迟的话，vue没有真正加载出来，用户就会看到{{message}}。加载出来后再进行变量替换，给用户的体验会不好-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+
+  /*
+  *   模拟网络延迟一秒
+  * */
+  setInterval(function(){
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好'
+      }
+    });
+  },1000);
+</script>
+</body>
+</html>

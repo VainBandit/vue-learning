@@ -8,6 +8,9 @@
 <div id="app">
   <h2>{{message}}, Vue</h2>
   <h2>{{firstName + lastName}}</h2> <!--Mustache不仅可以输出变量，还能输出一些简单的表达式-->
+  <h2>{{firstName + ' ' + lastName }}</h2>
+  <h2>{{counter*2}}</h2>
+
 </div>
 
 <script src="./js/vue.js"></script>
@@ -18,7 +21,8 @@
     data:{
       message:'你好',
       firstName:'kobe',
-      lastName:'bryant'
+      lastName:'bryant',
+      counter:100
     }
   });
 </script>

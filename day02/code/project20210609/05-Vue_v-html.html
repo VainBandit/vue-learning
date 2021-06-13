@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <span>{{url}}</span> <!--我们这样写，只会单纯展示字符串，而不会将字符串的内容解析到浏览器作为标签的形式展示-->
+  <br>
+  <span v-html="url"></span> <!--使用v-html就可以做到解析字符串然后转化为标签使用了-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好',
+      url:'<a href="https://www.baidu.com">baidu.com</a>'
+    }
+  });
+</script>
+</body>
+</html>

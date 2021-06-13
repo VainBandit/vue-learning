@@ -110,3 +110,184 @@ WebStorm提供了一个自定义模板的功能，我们可以将一些基本的
 ## Vue Mustache
 
 - `{{}}`: Mustache
+
+- 代码
+
+  ```html
+  <div id="app">
+    <h2>{{message}}, Vue</h2>
+    <h2>{{firstName + lastName}}</h2> <!--Mustache不仅可以输出变量，还能输出一些简单的表达式-->
+    <h2>{{firstName + ' ' + lastName }}</h2> <!--kobe bryant-->
+    <h2>{{counter*2}}</h2> <!--200-->
+  
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好',
+        firstName:'kobe',
+        lastName:'bryant',
+        counter:100
+      }
+    });
+  </script>
+  ```
+
+
+
+## Vue v-one
+
+- 这个指令的作用就是能够确保它不会被改变原来的值，一旦定义就不会改变
+
+- 代码
+
+  ```html
+  <div id="app">
+    <h2>{{message}}</h2>
+    <h2 v-once>{{message}}</h2>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好'
+      }
+    });
+  </script>
+  ```
+
+  ![](./v-once.png)
+  ![](./v-once1.png)
+
+
+
+## Vue v-html
+
+有的时候一些数据有一些标签的信息
+
+```html
+<div id="app">
+  <span>{{url}}</span> <!--我们这样写，只会单纯展示字符串，而不会将字符串的内容解析到浏览器作为标签的形式展示-->
+  <br>
+  <span v-html="url"></span> <!--使用v-html就可以做到解析字符串然后转化为标签使用了-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好',
+      url:'<a href="https://www.baidu.com">baidu.com</a>'
+    }
+  });
+</script>
+```
+
+![](./v-html.png)
+
+
+
+
+
+## Vue v-text
+
+跟Mustache功能一样，能够展示变量的字符串
+
+```html
+<div id="app">
+  <h2>{{message}} vue</h2>
+  <h2 v-text="message"> Vue</h2> <!--虽然能够做到展示字符内容，但是相对mustache来说不够灵活-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好'
+    }
+  });
+</script>
+```
+
+![](./v-text.png)
+
+
+
+## Vue v-pre
+
+展示原有的数据
+
+```html
+div id="app">
+  <h2>{{message}}</h2>
+  <h2 v-pre>{{message}}</h2> <!--这里不会进行数据绑定还有展示的操作，v-pre 表示原有字符和数据-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'你好'
+    }
+  });
+</script>
+```
+
+![](./v-pre.png)
+
+
+
+
+
+## Vue v-cloak
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app" v-cloak> <!--添加此关键字，当vue没有被加载时，v-cloak属性是存在的，但是vue加载出来后，v-clack的标签就不存在了-->
+  {{message}} <!--如果网络有延迟的话，vue没有真正加载出来，用户就会看到{{message}}。加载出来后再进行变量替换，给用户的体验会不好-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+
+  /*
+  *   模拟网络延迟一秒
+  * */
+  setInterval(function(){
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'你好'
+      }
+    });
+  },1000);
+</script>
+</body>
+</html>
+```
+
