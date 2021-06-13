@@ -1,3 +1,6 @@
+
+
+
 # Day 02
 
 
@@ -50,3 +53,60 @@
 
 - 生命周期函数
 
+  - `beforeCreate`
+  - `created`
+  - `beforeMounte`
+  - `mounted`
+  - `beforeUpdate`
+  - `updated`
+  - `beforeDestory`
+  - `destoried`
+
+
+
+## 3 WebStorm Template
+
+一般我们创建一个新的文件，就又要重新写一些基本的代码。
+
+这样做会比较麻烦
+
+WebStorm提供了一个自定义模板的功能，我们可以将一些基本的代码定义在里面，然后我们用的时候再用关键字tab出来即可
+
+1. Vue 基本代码
+
+   ```html
+   <div id="app">{{message}}</div>
+   
+   <script src="./js/vue.js"></script>
+   
+   <script>
+     const app = new Vue({
+       el:'#app',
+       data:{
+         message:'你好'
+       }
+     });
+   </script>
+   ```
+
+2. 复制上面的代码，然后打开Settings
+   ![](./settings.png)
+   ![](./settings1.png)
+   ![](./settings2.png)
+   ![](./settings3.png)
+
+3. 按照上面的步骤做了之后，我们在WebStorm的HTML文件中就可以轻松打出我们要的基本代码
+
+   - 
+     ![](./settings4.png)
+
+   - 
+     ![](./settings5.png)
+
+
+
+
+
+## Vue Mustache
+
+- `{{}}`: Mustache
