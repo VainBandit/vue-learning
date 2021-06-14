@@ -291,3 +291,222 @@ div id="app">
 </html>
 ```
 
+
+
+
+
+## Vue v-bind
+
+- 作用：动态绑定属性
+
+- 缩写：`::`
+
+- 实例代码
+
+  ```html
+  <div id="app">
+  <!--  错误的做法-->
+  <!--  <img src="{{imgUrl}}" alt="">-->
+  <!--  正确的做法-->
+    <img v-bind:src="imgUrl" style="width: 100px;height: 100px">
+    <br>
+    <a v-bind:href="url">{{message}}</a>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+          message:'百度一下',
+          imgUrl:'https://cn.vuejs.org/images/logo.svg',
+          url:'https://www.baidu.com'
+      }
+    });
+  </script>
+  ```
+
+- 语法糖
+
+  ```html
+  <img :src="imageUrl" >
+  ```
+
+- v-bind 动态绑定class
+
+  形式:`<div :class="{key1:value1,key2:value2}">{{message}}</>`
+  
+  ```html
+  <div id="app">
+  <!--  <h1 :class="active">{{message}}</h1>-->
+    <h2 v-bind:class="{active:isActive,line:isLine}">{{message}}</h2>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+          message:'Hello World',
+          active:'active',
+          line:'line',
+          isActive:true,
+          isLine:true
+      }
+    });
+  </script>
+  
+  <!--
+  更改变量的bool值，在class中添加或者删除class
+  如：isLine如果是false的话，那么h2只有一个class是active
+     isLine如果是true的话，那么h2有两个class 一个是 active 一个是 line
+  -->
+  ```
+
+- 根据上面的特性设计一个程序：点击按钮更改字体颜色
+
+  ```html
+  <div id="app">
+  <!--  <h1 :class="active">{{message}}</h1>-->
+    <h2 v-bind:class="{active:isActive,line:isLine}">{{message}}</h2>
+    <button v-on:click="buttonClick">按钮</button>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data: {
+          message: 'Hello World',
+          active: 'active',
+          line: 'line',
+          isActive: true,
+          isLine: true
+      },
+      methods:{
+          buttonClick:function(){
+              this.isLine = !this.isLine;
+          }
+      }
+    });
+  </script>
+  ```
+
+- 可以同时设置有绑定的class和没有绑定的class
+
+  ```html
+  <div id="app">
+  <!--  <h1 :class="active">{{message}}</h1>-->
+    <!--这样做之后没有绑定的class会整合到绑定到class中去-->
+    <h2 class="example" v-bind:class="{active:isActive,line:isLine}">{{message}}</h2>
+    <button v-on:click="buttonClick">按钮</button>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data: {
+          message: 'Hello World',
+          active: 'active',
+          line: 'line',
+          isActive: true,
+          isLine: true
+      },
+      methods:{
+          buttonClick:function(){
+              this.isLine = !this.isLine;
+          }
+      }
+    });
+  </script>
+  ```
+
+- v-bind 动态绑定class（函数绑定）
+
+  ```html
+  <div id="app">
+      <!--可以使用调用函数的方式获取到参数-->
+    <h2 class="example" v-bind:class="getClassName()">{{message}}</h2>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data: {
+          message: 'Hello World',
+          active: 'active',
+          line: 'line',
+          isActive: true,
+          isLine: true
+      },
+      methods:{
+          getClassName:function(){
+              return {active:this.isActive,line:this.isLine}
+          }
+      }
+    });
+  </script>
+  ```
+
+- v-bind 动态绑定class （数组绑定）
+
+  ```html
+  <div id="app">
+    <h2 :class="[active,line]">{{message}}</h2>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+          message:'Hello World',
+          active:'active',
+          line:'line'
+      }
+    });
+  </script>
+  ```
+
+- v-bind 动态绑定class （使用函数绑定，函数返回数组）
+
+  ```html
+  <div id="app">
+    <h2 :class="getClassName()">{{message}}</h2>
+  </div>
+  
+  <script src="./js/vue.js"></script>
+  
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+          message:'Hello World',
+          active:'active',
+          line:'line'
+      },
+      methods:{
+          getClassName:function(){
+              return [this.active, this.line];
+          }
+      }
+    });
+  </script>
+  ```
+
+  
+
+
+
+## Vue v-bind  和 v-for 的结合
+
+
+

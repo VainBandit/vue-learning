@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+<!--  错误的做法-->
+<!--  <img src="{{imgUrl}}" alt="">-->
+<!--  正确的做法-->
+  <img v-bind:src="imgUrl" style="width: 100px;height: 100px">
+  <br>
+  <a v-bind:href="url">{{message}}</a>
+  <br>
+<!--  语法糖的写法-->
+  <img :src="imgUrl" alt="" style="width: 100px;height: 100px;">
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+        message:'百度一下',
+        imgUrl:'https://cn.vuejs.org/images/logo.svg',
+        url:'https://www.baidu.com'
+    }
+  });
+</script>
+</body>
+</html>

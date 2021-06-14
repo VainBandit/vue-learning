@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+
+    .line{
+      color: black;
+    }
+
+    .example{
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+<!--  <h1 :class="active">{{message}}</h1>-->
+  <h2 class="example" v-bind:class="getClassName()">{{message}}</h2>
+  <button v-on:click="buttonClick">按钮</button>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data: {
+        message: 'Hello World',
+        active: 'active',
+        line: 'line',
+        isActive: true,
+        isLine: true
+    },
+    methods:{
+        buttonClick:function(){
+            this.isLine = !this.isLine;
+        },
+        getClassName:function(){
+            return {active:this.isActive,line:this.isLine}
+        }
+    }
+  });
+</script>
+</body>
+</html>
