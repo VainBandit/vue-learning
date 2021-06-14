@@ -508,5 +508,58 @@ div id="app">
 
 ## Vue v-bind  和 v-for 的结合
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li :class="getClassName(index)" v-for="(m, index) in movies" @click="changeClassName(index)">{{m}}</li>
+  </ul>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+        message:'Hello World',
+        movies:[
+            '海王',
+            '海尔兄弟',
+            '火影忍者',
+            '进击的剧人'
+        ],
+        currentIndex:0
+    },
+    methods:{
+        //点击的时候记录参数
+        changeClassName:function(index){
+            this.currentIndex = index;
+        },
+        getClassName(index){
+            if(index == this.currentIndex){
+                return {'active':true};
+            }else{
+                return {'active':false};
+            }
+        }
+    }
+  });
+</script>
+</body>
+</html>
+```
+
 
 
