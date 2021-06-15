@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{fullName}}
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+        message:'Hello World',
+        firstName:'Kobe',
+        lastName:'Bryant'
+    },
+    computed:{
+        // fullName:function(){  // 简单方法
+        //     return this.firstName + ' ' + this.lastName;
+        // }
+        fullName:{ // 当然这样写太麻烦了，所以就有了上面的简单写法
+          // set:function(){ 计算属性一般是没有set方法的，只读属性
+          //
+          // },
+          set:function(newValue){
+            const names =  newValue.splice(' ');
+            this.firstName = names[0];
+            this.lastName = names[1];
+          },
+          get:function(){
+            return this.firstName + " " +this.lastName;
+          }
+        }
+    }
+  });
+</script>
+</body>
+</html>

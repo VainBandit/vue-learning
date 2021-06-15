@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <button @click="btnClick()">按钮1</button>
+  <button @click="btnClick">按钮2</button>
+
+  <button @click="btn1Click">按钮3</button>
+
+  <button @click="btn2Click">按钮4</button> <!--第一个参数是Window生成的event对象，第二个参数在函数会是undefined-->
+  <button @click="btn2Click('123',event)">按钮5</button> <!--这里会报错,因为data里面没有event的这个变量-->
+  <button @click="btn2Click('123',$event)">按钮6</button> <!--$event 表示Window生成的event对象-->
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+        message:'Hello World'
+    },
+    methods:{
+      btnClick(){
+        console.log("Click the Button!");
+      },
+      btn1Click(abc){
+        console.log("event对象",abc);
+      },
+      btn2Click(abc,event){
+        console.log(abc, event);
+      }
+    }
+  });
+</script>
+</body>
+</html>

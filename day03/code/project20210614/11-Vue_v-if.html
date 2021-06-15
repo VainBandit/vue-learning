@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2 v-if="isTrue">isTrue为true的时候显示</h2>
+  <h2 v-else>isTrue为false的时候显示</h2>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World',
+      isTrue:true
+    }
+  });
+</script>
+</body>
+</html>

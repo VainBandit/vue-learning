@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div @click="divClick">
+    <button @click.stop="buttonClick">按钮</button> <!--.stop 的作用是阻止事件冒泡-->
+  </div>
+
+  <form action="http://baidu.com">
+    <input type="submit" @click.prevent="submitButton">
+  </form>
+
+  <br>
+
+  <input type="text" @keyup.enter="keyupfunction">
+
+  <br>
+
+  <button @click.once="onceFunction">点击</button>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+        message:'Hello World'
+    },
+    methods:{
+      buttonClick(){
+        console.log('click button');
+      },
+      divClick(){
+        console.log('click div');
+      },
+      submitButton(){
+        console.log("submitButtonClick");
+      },
+      keyupfunction(){
+        console.log("keyup");
+      },
+      onceFunction(){
+        console.log("once");
+      }
+    }
+  });
+</script>
+</body>
+</html>

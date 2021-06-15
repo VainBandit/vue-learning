@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+ <!--遍历数组元素  -->
+  <ul>
+    <li v-for="player in players">{{player}}</li>
+  </ul>
+<!-- 遍历数组元素（显示下标） -->
+  <ul>
+    <li v-for="(player, index) in players">{{index}}-{{player}}</li>
+  </ul>
+
+<!--  遍历对象-->
+  <ul>
+    <li v-for="item in info">{{item}}</li>
+  </ul>
+<!--  遍历对象（显示属性名）-->
+  <ul>
+    <li v-for="(item,label) in info">{{label}}:{{item}}</li>
+  </ul>
+<!--  遍历对象（显示属性名和下标）-->
+  <ul>
+    <li v-for="(item, label, index) in info">{{index}}-{{label}}:{{item}}</li>
+  </ul>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World',
+      players:['bin','kobe','james','curry'],
+      info:{
+        name:'Bin',
+        age:21,
+        height:1.86
+      }
+    }
+  });
+</script>
+</body>
+</html>
