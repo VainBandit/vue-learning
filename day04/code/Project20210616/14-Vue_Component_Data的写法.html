@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <env/>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<template id="cpn1">
+  <div>
+    <h1>{{message}}</h1>
+  </div>
+</template>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World'
+    },
+    components:{
+      env:{
+        template:'#cpn1',
+        data(){
+          return{
+            message:'Hello Component1'
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

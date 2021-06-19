@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <label v-for="item in originHobbies">
+    <input type="checkbox" :value="item" v-model="newHobbies">{{item}}
+  </label>
+  <h2>{{originHobbies}}</h2>
+  <h2>{{newHobbies}}</h2>
+</div>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World',
+      originHobbies:['篮球','足球','羽毛球','快乐星球'],
+      newHobbies:[]
+    }
+  });
+</script>
+</body>
+</html>

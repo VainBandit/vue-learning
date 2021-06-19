@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const nums = [10,20,111,222,444,40,50];
+
+  let newsNums = nums.filter(function(n){
+    return n<100;
+  });
+
+  console.log(newsNums);
+
+  newsNums = newsNums.map(function(n){
+    return n * 2;
+  });
+
+  console.log(newsNums);
+
+  newsNums = newsNums.reduce(function(preValue, n){
+    return preValue + n;
+  },0);
+
+  console.log(newsNums);
+</script>
+</body>
+</html>
