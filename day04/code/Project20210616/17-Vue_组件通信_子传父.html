@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--父组件模板-->
+<div id="app">
+  <cpn @itemclick="knockfunction"/>
+</div>
+
+<!--子组件模板-->
+<template id="cpn">
+  <div>
+    <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+
+<script>
+
+  const cpn = {
+    template:'#cpn',
+    data(){
+      return {
+        categories:[
+          {id:'aaa', name:'热门推荐'},
+          {id:'aaa', name:'手机数码'},
+          {id:'aaa', name:'家用家电'},
+          {id:'aaa', name:'电脑办公'}
+        ]
+      }
+    },
+    methods:{
+      btnClick(item){
+        // console.log(item)
+        this.$emit('itemclick',item)
+      }
+    }
+  };
+
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World',
+      movies:['海王','海贼王','海尔兄弟']
+    },
+    components:{
+      cpn:cpn
+    },
+    methods:{
+      knockfunction(item){
+        console.log("knock!knock",item);
+      }
+    }
+  });
+</script>
+</body>
+</html>

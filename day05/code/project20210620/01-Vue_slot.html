@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn><button>按钮</button></cpn>
+  <cpn></cpn> <!--没有放任何插入元素-->
+  <cpn>
+    <h1>Hello Slot</h1>
+    <p>HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello</p>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>I'm a component</h2>
+    <p>component main body</p>
+    <slot><span>这个是默认值</span></slot> <!--如果父组件没有放置任何插入元素的话，那么这里就会显式默认值-->
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World'
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  });
+</script>
+</body>
+</html>

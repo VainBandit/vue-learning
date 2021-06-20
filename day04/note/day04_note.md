@@ -802,5 +802,334 @@
 
    ---
 
+   ```html
+   <div id="app">
+     <cpn :cInfo="info"></cpn>
+   </div>
    
+   <template id="cpn1">
+     <div>
+       <h2>{{cInfo}}</h2>
+     </div>
+   </template>
+   
+   <script src="./js/vue.js"></script>
+   
+   <script>
+     const app = new Vue({
+       el:'#app',
+       data:{
+         message:'Hello World',
+         info:{
+           name:'bin',
+           age:18
+         }
+       },
+       components:{
+         cpn:{
+           template:'#cpn1',
+           props:{
+             cInfo:{
+               type:Object,
+               default(){
+                 return {}
+               }
+             }
+           }
+         }
+       }
+     });
+   </script>
+   ```
+   
+   ![](./result1.png)
+   
+   > 从代码和图片可以看出，vue2.x的props属性在HTML上是不支持驼峰式写法的
+   
+   ---
+   
+   ```html
+   <div id="app">
+     <cpn :c-info="info"></cpn> <!--那么我们可以将驼峰式换成-的写法就可以了-->
+   </div>
+   
+   <template id="cpn1">
+     <div>
+       <h2>{{cInfo}}</h2>
+     </div>
+   </template>
+   
+   <script src="./js/vue.js"></script>
+   
+   <script>
+     const app = new Vue({
+       el:'#app',
+       data:{
+         message:'Hello World',
+         info:{
+           name:'bin',
+           age:18
+         }
+       },
+       components:{
+         cpn:{
+           template:'#cpn1',
+           props:{
+             cInfo:{
+               type:Object,
+               default(){
+                 return {}
+               }
+             }
+           }
+         }
+       }
+     });
+   </script>
+   ```
+   
+   ---
+   
+9. 子组件传递数据给父组件
+
+   我们需要使用自定义事件来实现子组件传递数据或事件到父组件中
+
+   自定义事件的流程
+
+   - 在子组件中，通过`$emit()`来触发事件
+   - 在父组件中，通过`v-on`来监听子组件事件
+
+   ```html
+   <!--父组件模板-->
+   <div id="app">
+     <cpn @itemclick="knockfunction"/>
+   </div>
+   
+   <!--子组件模板-->
+   <template id="cpn">
+     <div>
+       <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+     </div>
+   </template>
+   
+   <script src="./js/vue.js"></script>
+   
+   <script>
+   
+     const cpn = {
+       template:'#cpn',
+       data(){
+         return {
+           categories:[
+             {id:'aaa', name:'热门推荐'},
+             {id:'aaa', name:'手机数码'},
+             {id:'aaa', name:'家用家电'},
+             {id:'aaa', name:'电脑办公'}
+           ]
+         }
+       },
+       methods:{
+         btnClick(item){
+           // console.log(item)
+           this.$emit('itemclick',item)
+         }
+       }
+     };
+   
+     const app = new Vue({
+       el:'#app',
+       data:{
+         message:'Hello World',
+         movies:['海王','海贼王','海尔兄弟']
+       },
+       components:{
+         cpn:cpn
+       },
+       methods:{
+         knockfunction(item){
+           console.log("knock!knock",item);
+         }
+       }
+     });
+   </script>
+   ```
+
+   ---
+
+10. children属性
+
+    ```html
+    <div id="app">
+      <cpn></cpn>
+      <button @click="clickMeFunction">Click Me</button>
+    </div>
+    <template id="cpn">
+      <div>
+        <h2>Hello Component</h2>
+      </div>
+    </template>
+    
+    <script src="./js/vue.js"></script>
+    
+    <script>
+      const app = new Vue({
+        el:'#app',
+        data:{
+          message:'Hello World'
+        },
+        methods:{
+          clickMeFunction(){
+            this.$children[0].showMessage();
+          }
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            methods:{
+              showMessage(){
+                console.log("cpn:methods -> showMessage");
+              }
+            }
+          }
+        }
+      });
+    </script>
+    ```
+
+    ---
+
+11. ref属性
+
+    ```html
+    <div id="app">
+      <cpn ref="asd"></cpn>
+      <button @click="clickMeFunction">Click Me</button>
+    </div>
+    <template id="cpn">
+      <div>
+        <h2>Hello Component</h2>
+      </div>
+    </template>
+    
+    <script src="./js/vue.js"></script>
+    
+    <script>
+      const app = new Vue({
+        el:'#app',
+        data:{
+          message:'Hello World'
+        },
+        methods:{
+          clickMeFunction(){
+            this.$refs['asd'].showMessage();
+          }
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            methods:{
+              showMessage(){
+                console.log("cpn:methods -> showMessage");
+              }
+            }
+          }
+        }
+      });
+    </script>
+    ```
+
+    ---
+    
+12. parent属性
+
+    ```html
+    <div id="app">
+      <cpn></cpn>
+    </div>
+    
+    <template id="cpn">
+      <div>
+        <button @click="clickMe">click me</button>
+      </div>
+    </template>
+    
+    <script src="./js/vue.js"></script>
+    
+    <script>
+      const app = new Vue({
+        el:'#app',
+        data:{
+          message:'Hello World'
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            methods:{
+              clickMe(){
+                console.log(this.$parent);
+              }
+            }
+          }
+        }
+      });
+    </script>
+    ```
+
+    ---
+
+13. root 属性
+
+    ```html
+    <div id="app">
+      <cpn></cpn>
+    </div>
+    
+    <template id="cpn">
+      <div>
+        <button @click="clickMe">click me</button>
+        <cpn1></cpn1>
+      </div>
+    </template>
+    
+    <template id="ccpn">
+      <div>
+        <button @click="clickMe">click me to show root</button>
+      </div>
+    </template>
+    
+    <script src="./js/vue.js"></script>
+    
+    <script>
+      const app = new Vue({
+        el:'#app',
+        data:{
+          message:'Hello World'
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            methods:{
+              clickMe(){
+                console.log(this.$parent);
+              }
+            },
+            components:{
+              cpn1:{
+                template:'#ccpn',
+                methods:{
+                  clickMe(){
+                    console.log(this.$root);
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+    </script>
+    ```
+
+    ---
+
+    
 

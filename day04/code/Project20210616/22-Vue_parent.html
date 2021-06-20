@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <button @click="clickMe">click me</button>
+    <cpn1></cpn1>
+  </div>
+</template>
+
+<template id="ccpn">
+  <div>
+    <button @click="clickMe">click me to show root</button>
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World'
+    },
+    components:{
+      cpn:{
+        template:'#cpn',
+        methods:{
+          clickMe(){
+            console.log(this.$parent);
+          }
+        },
+        components:{
+          cpn1:{
+            template:'#ccpn',
+            methods:{
+              clickMe(){
+                console.log(this.$root);
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

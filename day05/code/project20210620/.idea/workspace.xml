@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fec00f86-b19f-4c5c-ac94-a323bac4631c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/16-Vue_组件通信_父传子(props中的驼峰标识).html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/17-Vue_组件通信_子传父.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/18-Vue案例_父子组件双向绑定.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/19-Vue_watch.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/20-Vue_childern.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/21-Vue_ref.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/22-Vue_parent.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01-Vue_slot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../day04/note/day04_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day04/note/day04_note.md" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1uCCQiMbePAJEITUYaG15ScTwra" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fec00f86-b19f-4c5c-ac94-a323bac4631c" name="Default Changelist" comment="" />
+      <created>1624160169606</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624160169606</updated>
+      <workItem from="1624160171886" duration="1226000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
