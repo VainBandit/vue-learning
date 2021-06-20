@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fec00f86-b19f-4c5c-ac94-a323bac4631c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/16-Vue_组件通信_父传子(props中的驼峰标识).html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/17-Vue_组件通信_子传父.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/18-Vue案例_父子组件双向绑定.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/19-Vue_watch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/20-Vue_childern.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/21-Vue_ref.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../day04/code/Project20210616/22-Vue_parent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/01-Vue_slot.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../day04/note/day04_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../../day04/note/day04_note.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/02-Vue_具名插槽.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Vue_作用域插槽.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/04-Vue_新具名插槽.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ES6Module/aaa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ES6Module/bbb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ES6Module/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../note/day05_note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../note/day05_note.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -33,7 +33,13 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ES6Module" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Program\vue\vue-learning\day05\code\project20210620\ES6Module" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -57,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1624160169606</updated>
-      <workItem from="1624160171886" duration="1226000" />
+      <workItem from="1624160171886" duration="10039000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn>
+    <button slot="left">按钮</button>
+    <span slot="center">标题</span>
+    <spasn slot="right" style="font-weight: bold">字体</spasn>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <slot name="left"><span>左边的</span></slot>
+    <slot name="center"><span>中间的</span></slot>
+    <slot name="right"><span>右边的</span></slot>
+  </div>
+</template>
+
+<script src="./js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data:{
+      message:'Hello World'
+    },
+    components:{
+      cpn:{
+        template:'#cpn'
+      }
+    }
+  });
+</script>
+</body>
+</html>
