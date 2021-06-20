@@ -371,7 +371,370 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
    ---
 
 
+---
+
+2. webpack.config.js配置
+
+   每次打包的时候，我们都要输入`webpack ./src/main.js ./dist/bundle.js`太麻烦了。我们需要有一个东西，来帮我们可以用简短的命令就可以做到上面命令所能做到的东西。所以我们需要有一个配置文件，那就是webpack.config.js。
+
    ---
 
-2. 
+   ```javascript
+   // 使用common.js进行模块化的导入导出
+   
+   const path = require('path'); //调用node.js中的path模块
+   
+   module.exports = {
+     entry:'./src/main.js',
+     output:{
+       // __dirname:是此文件的目录地址
+       path:path.resolve(__dirname,'dist'), // path模块有一个函数是resolve，可以将根据os对两个地址进行拼接
+       filename:'bundle.js'
+     }
+   };
+   ```
+
+   ---
+
+3. node init 
+   为了方便开发，我们还能使用npm局部安装我们开发需要的版块，然后使用在项目中使用本地目录中下载的版块（而不是安装在全局的目录中）
+
+   首先，我们需要用一行`node init`的命令，让node帮我们构造一个项目，项目里有对应的配置文件。
+
+   配置文件有: `package.json`
+
+   ---
+
+   ```javascript
+   {
+     "name": "webpack_config", // 项目名
+     "version": "1.0.0", // 项目版本
+     "description": "", //项目描述
+     "main": "index.js", // 主要的js
+     "scripts": { // 预设的脚本
+       "build": "webpack"  
+     },
+     "author": "", // 项目作者
+     "license": "ISC" // 项目使用的开源协议
+   }
+   
+   ```
+
+   ---
+
+   假设我们现在有一个这样的需求，就是我们在开发的时候我们需要依赖一个版块，但是我们开发完之后我们就不需要这个版块了，那么有什么命令是可以满足这个需求的？
+
+   ```shell
+   npm install webpack@3.6.0 --save-dev # --save-dev 表明我们用开发依赖
+   ```
+
+   > 这样我们发布项目的时候，我们的项目是不依赖我们安装的这个组件的
+
+   ---
+
+   我么执行完上面的命令之后，再来看一下 `package.json`
+
+   ```javascript
+   {
+     "name": "webpack_config",
+     "version": "1.0.0",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+       "build": "webpack"
+     },
+     "author": "",
+     "license": "ISC",
+     "devDependencies": { // 这里已经添加了我们的已开发依赖
+       "webpack": "^3.6.0"
+     }
+   }
+   ```
+
+   > 假如我们把目录下 nod_modules (我们局部安装模块的时候就会自动生成该目录) 删除的话，我们只需要使用`npm install`就可以根据`package.json`上所表明的依赖帮我们下载对应的模块了
+
+   ----
+
+   在 `package.json`中有一个属性是`scripts`。在这个属性中，我们可以自定义脚本。定义好脚本之后，我们在目录下的终端输入 `npm run 脚本对应的属性名` 就可以执行脚本了。**注意**：脚本定义的命令是针对根据局部模块库里的模块，如果我们在项目中的终端使用 脚本对应的命令的话，我们运行的是全局模块库中的模块
+
+   ```shell
+   ## 假设build脚本定义的脚本为 webpack
+   
+   npm run build # 这里执行的是局部模块库中的webpack
+   webpack # 这里执行的是全局模块库中的webpack
+   ```
+
+   ---
+
+4. loader 的使用
+
+   目前我们都是使用WebPack打包 `js`后缀的文件，但是在开发中我们不单止是用到 js 后缀的文件，还有css，sass文件和其他文件等。那么针对这个情况，我们要又该怎么做呢？
+
+   ---
+
+   这里具体举个例子
+   创建一个 `css`文件, 叫`normal.css`
+
+   ```css
+   body{
+       background-color:red;
+   }
+   ```
+
+   然后在 `main.js`文件中添加如下代码
+
+   ```javascript
+   ...
+   import css from './css/normal.css';
+   ...
+   ```
+
+   ---
+
+   到这里我们还不能打包我们的程序，因为css文件js文件是识别不了的，为了解决打包css文件的问题，webpack提供了`css-loader`和`style-loader`来解决打包`.css`文件的问题
+
+   ```shell
+   npm install css-loader@3.3.0 --save-dev # 使用命令安装css-loader模块，并添加到开发者依赖
+   
+   npm install style-loader@1.0.0 --save-dev # 使用命令安装style-loader模块，并添加到开发者依赖
+   ```
+
+   > 注意，如果webpack的版本比较高的话，不需要下载之前的版本
+   > 但是如果webpack版本比较低（像本例用的是webpack@3.6.0）。那就需要下载比较低的版本
+
+   ---
+
+   然后我们要在 `webpack.config.js`文件中添加
+
+   ```javascript
+   module.exports = {
+     ...,
+     module: {
+       rules: [
+         {
+           test: /\.css$/i,
+           use: ["style-loader", "css-loader"],
+         }
+       ]
+     }
+   };
+   ```
+
+   > 注意，一定是 style-loader 在前 css-loader 在后（因为先执行css-loader，然后再执行 style-loader【从右到左执行】）
+
+   ---
+
+   然后运行 `npm run build`执行脚本打包程序。最终的效果为
+
+   ![](./testResult2.png)
+
+
+   ---
+
+5. less-loader 的使用
+
+   我们开发的时候，可能我们不想使用css，那我们可以使用sass，less。那么webpack也有对应的loader来对相应的文件进行打包操作。我们来举一个less-loader的例子
+
+   ---
+
+   > 编写 less的代码
+
+   ```less
+   @fontSize:50px;
+   @fontColor:orange;
+   
+   body{
+     font-size: @fontSize;
+     color: @fontColor;
+   }
+   ```
+
+   ---
+
+   > 然后再 main.js 中，我们导入less
+
+   ```javascript
+   ...
+   import less from './css/test.less';
+   ...
+   ```
+
+   ---
+
+   > 局部安装 less-loader 和 less
+
+   ```shell
+   npm install less-loader@4.1.0 less@4.1.1 --save-dev
+   # 这里使用的是先前的版本（因为webpack的版本是3.6.0。版本过高用不了）
+   ```
+
+   ---
+
+   > 在 webpack.config.js 文件中添加规则
+
+   ```javascript
+   module.exports = {
+     ...,
+     module: {
+       rules: [
+         ...,
+         {
+           test: /\.less$/i,
+           loader: [
+             // compiles Less to CSS
+             'style-loader',
+             'css-loader',
+             'less-loader'
+           ]
+         },
+         ...
+       ]
+     },
+     ...
+   };
+   ```
+
+   ---
+
+   然后使用 `npm run build`执行脚本打包项目。然后打开项目。
+
+   这里为了更好地显示效果。在 `main.js`添加 `document.writeln('<h1>Hello Webpack</h1>')`
+
+   ![](./testResult3.png)
+
+   ---
+
+6. url-loader的使用 
+
+   我们讲了导入css，less文件的打包，但是如果是图片资源，那我们又要用什么loader？
+
+   我们可以使用url-loader。
+
+   ---
+
+   1. 在src文件夹中创建一个img的文件夹，然后放置一张大概10kb的图片在里面。然后在 normal.css 文件中更改代码
+
+      ```css
+      body{
+        /*background-color:red;*/
+        background: url("../img/test.jpg"); /*更改为这个代码*/
+      }
+      ```
+
+      ---
+
+   2. 导入到 `main.js` 的操作上面的笔记已经做过了，所以我们这里直接安装 url-loader
+
+      ```shell
+      npm install url-loader@4.1.0 --save-dev 
+      # 因为webpack的版本是3.6.0。所以这里指定loader版本跟 webpack的版本适配
+      ```
+
+      ---
+
+   3. 更改 `webpack.config.js`
+
+      ```javascript
+      const path = require('path');
+      
+      module.exports = {
+        ...,
+        module: {
+          rules: [
+            ...,
+            {
+              test: /\.(png|jpg|gif)$/i,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 14000 //这里将最小值更改为14000大概是14多kb左右
+                  }
+                }
+              ]
+            },
+            ...
+          ]
+        },
+        ...
+      };
+      ```
+
+      ---
+
+   4. 然后在终端运行指令 `npm run build `执行脚本对项目进行打包，然后在浏览器打开`index.html`
+
+      ![](./testResult4.png)
+
+
+      ---
+
+7. url-loader 和 file-loader 的使用
+
+   上面的url-loader只是适用于小图片，是因为url-loader可以将小图片打包成字符串然后部署到项目里面。但是对于大一点的图片，url-loader是无法发挥作用的。这个时候我们要使用file-loader
+
+   ---
+
+   安装 file-loader 
+
+   ```shell
+   npm install file-loader@4.1.0 --save-dev
+   ```
+
+   ---
+
+   更改 `webpack.config.js`中的部分配置
+
+   ```javascript
+   module.exports = {
+     ...,
+     output:{
+       ...,
+       publicPath:'dist/' // 指定打包后的静态文件的目录地址
+     },
+    ...
+   };
+   ```
+
+   > 如果没有这样做的话，打包好的项目会跟之前没有打包之前会先去找img目录，但是打包好的文件是没有img目录的，所以不指定的话不能显示图片的
+
+   ---
+
+   在终端运行指令`npm run build` 打包程序。在浏览器浏览`index.html`
+
+   ![](./testResult5.png)
+
+   ---
+
+   如果没有在 `webpack.config.js`指定打包的图片的文件名的话，我们的文件名会是由hash码生成长串。
+
+   我们可以在 `webpack.config.js`指定我们的图片文件名
+
+   ```javascript
+   const path = require('path');
+   
+   module.exports = {
+     ...,
+     module: {
+       rules: [
+         ...,
+         {
+           test: /\.(png|jpg|gif)$/i,
+           use: [
+             {
+               loader: 'url-loader',
+               options: {
+                 limit: 14000,
+                 name:'img/[name].[hash:8].[ext]'  // 指定文件名，[name]原本的文件名，[hash:8]8个长度的hash码，[ext]对应的拓展名
+               }
+             }
+           ]
+         }
+       ]
+     }
+   };
+   ```
+
+   这样打包的图片地址就会如配置上规定的那样
+   ![](./testResult6.png)
 
