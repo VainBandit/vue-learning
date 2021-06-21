@@ -440,48 +440,64 @@ function toComment(sourceMap) {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_mathUtils__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__js_file__ = __webpack_require__(4);
 
 
+var _mathUtils = __webpack_require__(3);
 
-console.log(Object(__WEBPACK_IMPORTED_MODULE_0__js_mathUtils__["a" /* add */])(20,30));
-console.log(Object(__WEBPACK_IMPORTED_MODULE_0__js_mathUtils__["b" /* multi */])(20,30));
+var _file = __webpack_require__(4);
 
-document.writeln("<h1>Hello WebPack</h1>")
+var css = _interopRequireWildcard(_file);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+console.log((0, _mathUtils.add)(20, 30));
+console.log((0, _mathUtils.multi)(20, 30));
+
+var name = "Bin";
+var age = 18;
+
+document.writeln("<h1>Hello WebPack</h1>");
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return add; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return multi; });
-function add(num1, num2){
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function add(num1, num2) {
   return num1 + num2;
 }
 
-function multi(num1, num2){
+function multi(num1, num2) {
   return num1 * num2;
 }
 
-
+exports.add = add;
+exports.multi = multi;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_normal_css__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_normal_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_normal_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_test_less__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_test_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_test_less__);
 
 
+var _normal = __webpack_require__(5);
+
+var _normal2 = _interopRequireDefault(_normal);
+
+var _test = __webpack_require__(9);
+
+var _test2 = _interopRequireDefault(_test);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
 /* 5 */

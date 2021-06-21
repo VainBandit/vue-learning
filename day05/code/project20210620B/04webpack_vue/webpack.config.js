@@ -1,4 +1,5 @@
 const path = require('path');
+const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
   entry:'./src/main.js',
@@ -7,8 +8,8 @@ module.exports = {
     filename:'bundle.js',
     publicPath:'dist/'
   },
-  module: {
-    rules: [
+  module:{
+    rules:[
       {
         test: /\.less$/i,
         loader: [
@@ -46,7 +47,20 @@ module.exports = {
             presets: ['es2015']
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
-  }
+  },
+  resolve:{
+    extensions:['.js','.css','vue'],
+    alias:{
+      'vue$':'vue/dist/vue.esm.js'
+    }
+  },
+  plugins:[
+      new VueLoaderPlugin()
+  ]
 };
