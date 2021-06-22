@@ -2,12 +2,11 @@ const path = require('path');
 const {VueLoaderPlugin} = require('vue-loader');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const uglifyPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry:'./src/main.js',
   output:{
-    path:path.resolve(__dirname,'dist'),
+    path:path.resolve(__dirname,'../dist'),
     filename:'bundle.js'
   },
   module:{
@@ -63,15 +62,15 @@ module.exports = {
     }
   },
   plugins:[
-      new VueLoaderPlugin(),
-      new webpack.BannerPlugin('最终版权归VainBandit所有'),
-      new HtmlWebpackPlugin({
-        template:'index.html'
-      }),
-      new uglifyPlugin()
+    new VueLoaderPlugin(),
+    new webpack.BannerPlugin('最终版权归VainBandit所有'),
+    new HtmlWebpackPlugin({
+      template:'index.html'
+    }),
+    // new uglifyPlugin()
   ],
-  devServer:{
-    contentBase:'./dist',
-    inline:true
-  }
+  // devServer:{
+  //   contentBase:'./dist',
+  //   inline:true
+  // }
 };

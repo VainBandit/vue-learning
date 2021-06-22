@@ -753,7 +753,7 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
    ```
 
 
-   ---
+---
 
    安装完之后，我们先来看一下bundle.js里的文件
 
@@ -761,7 +761,7 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
 
    > 这说明我们还没有将打包的项目转换成es5的语法，所以部分浏览器是无法使用的。
 
-   ---
+---
 
    接下来在`webpack.config.js`添加配置，使打包的js文件变成es5语法的js文件
 
@@ -788,13 +788,13 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
    };
    ```
 
-   ---
+---
 
    在目录下的终端使用`npm run build`打包程序，再来看一下 `bundle.js`文件
 
    ![](./testResult8.png)
 
-   ---
+---
 
 9. Vue.js 安装 ( 通过npm进行安装 )
 
@@ -1071,17 +1071,16 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
 
     https://vue-loader.vuejs.org/zh/guide/#vue-cli
 
-    > 安装 vue-loade 和 vue-template-compiler 中
-
-
+    > 安装 vue-loade 和 vue-template-compiler 
+    
     ```shell
     npm install vue-loader vue-template-compiler --save-dev
     ```
-
+    
     ---
-
+    
     > 在 webpack.config.js 文件中配置 规则 和 插件
-
+    
     ```javascript
     module.exports = {
       ...,
@@ -1096,7 +1095,7 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
       }
     };
     ```
-
+    
     ```javascript
     const {VueLoaderPlugin} = require('vue-loader'); //导入版块
     
@@ -1107,21 +1106,23 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
       ]
     };
     ```
-
+    
     ---
-
+    
     在 `main.js`更改导入的版块
-
+    
     ```javascript
     // import cpn from './js/cpn.js'
     import cpn from './vue/cpn.vue'
     ```
-
+    
     ---
-
+    
     这样打包程序后，在浏览器运行`index.html`文件。
-
+    
     ---
+    
+    
 
 12. 省略后缀
 
@@ -1150,5 +1151,104 @@ slot的目的就是为了让我们封装的组件更加具有拓展性
 
     ---
 
+13. webpack plugin
+
+    - loader 和 plugin 区别
+      - loader 主要用于转换某些类型的模块，它是一个转换器
+      - plugin 是插件，它是对webpack 本身的扩展，是一个扩展器
+
+    ---
+
+14. webpack 横幅Plugin的使用
+
+    在 `webpack.config.js`文件中引入 `webpack`模块
+
+    ```javascript
+    const webpack = require('webpack');
+    ```
+
+    然后在 `module` 里添加属性 `plugins`, 引入 `new webpack.BannerPlugin()` 插件
+
+    ```javascript
+    module.exports = {
+      ...,
+      module:{
+      ...,
+      plugins:[
+          new webpack.BannerPlugin('最终版权归VainBandit所有');
+      ]
+    };
+    ```
+
+    ---
+
+    ```shell
+    npm run build # 打包程序
+    ```
+
+    然后查看源码
+
+    ![](./testResult12.png)
+
+    ---
+
+15. HTMLWebpackPlugin 的使用
+
+    在真实发布项目的时候，发布的是dist文件夹的内容，但是dist文件夹中如果没有index.html文件。所以我们需要将index.html文件打包到dist文件夹中，这个时候我们可以使用HtmlWebpackPlugin 插件
+
+    ---
+
+    HTMLWebpackPlugin 插件可以为我们做这些事情：
+
+    - 自动生成一个 `index.html` 文件（可以指定模板来生成）
+    - 将打包的js文件，自动通过script标签插入到body中
+
+    ---
+
+    > 安装HTMLWebpackPlugin插件
+
+    ```shell
+    npm install --save-dev html-webpack-plugin@3.3.0
+    ```
+
+    ---
+
+    > 使用插件
+
+    ```javascript
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
     
+    module.exports = {
+      ...,
+      plugins:[
+          new HtmlWebpackPlugin({
+            template:'index.html'
+          })
+      ]
+    };
+    ```
+
+    ---
+
+    > 在 webpack.config.js 删除output属性中的publicPath属性
+
+    ---
+
+    > 然后 `index.html` 删除 `<script src="./dist/bundle.js></script>"` 标签（因为等下 HTTPWebpackPlugin会帮我们导入js文件的操作的）
+
+    ---
+
+    > 然后打包程序
+
+    ```shell
+    npm run build # 打包程序
+    ```
+
+    ---
+
+
+
+
+
+## 
 
