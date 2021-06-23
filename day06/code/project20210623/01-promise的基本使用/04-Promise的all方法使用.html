@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  Promise.all([
+      new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve('Hello World');
+        },1000);
+      }),
+
+      new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve('Hello Vue');
+        },2000);
+      })
+  ]).then(results=>{
+    console.log(results);
+  })
+</script>
+</body>
+</html>

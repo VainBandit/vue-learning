@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  // //resolve函数
+  // new Promise((resolve,reject)=>{
+  //   setTimeout(()=>{
+  //     resolve('hello');
+  //   },1000)
+  // }).then(data=>{
+  //   console.log(data, "第一层的处理的代码");
+  //
+  //   // 原始写法
+  //   // return new Promise(resolve=>{
+  //   //   resolve(data + '111');
+  //   // });
+  //
+  //   // 简单的写法一
+  //   // return Promise.resolve(data+'1111');
+  //
+  //   // 简单的写法二
+  //   return data+'111';
+  // }).then(data=>{
+  //   console.log(data, "第二层的处理代码");
+  //
+  //   return new Promise(resolve=>{
+  //     resolve(data + '222');
+  //   });
+  // }).then(data=>{
+  //   console.log(data, "第三层的处理代码");
+  //
+  //   return new Promise(resolve=>{
+  //     resolve(data+ '333');
+  //   });
+  // }).then(data=>{
+  //   console.log(data);
+  // });
+
+  // reject函数
+  new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve('hello');
+    },1000)
+  }).then(data=>{
+    console.log(data, "第一层的处理的代码");
+
+    // 原始写法
+    // return new Promise((resolve,reject)=>{
+    //   reject('err');
+    // })
+
+    // 简单写法一
+    // return Promise.reject('err');
+
+    // 简单写法二
+    throw 'err';
+  }).then(data=>{
+    console.log(data, "第二层的处理代码");
+
+    return new Promise(resolve=>{
+      resolve(data + '222');
+    });
+  }).then(data=>{
+    console.log(data, "第三层的处理代码");
+
+    return new Promise(resolve=>{
+      resolve(data+ '333');
+    });
+  }).then(data=>{
+    console.log(data);
+  }).catch(err=>{
+    console.log('这里显示异常',err); // 这里显示异常
+  });
+</script>
+</body>
+</html>
